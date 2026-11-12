@@ -1,7 +1,8 @@
 
-import mongoose, { Schema } from "mongoose";
+import mongoose, { Schema, Document } from "mongoose";
 
-interface IWarehouse {
+// Warehouse interface
+export interface IWarehouse extends Document {
   name: string;
   location: string;
   capacity: number;
@@ -9,32 +10,36 @@ interface IWarehouse {
   updatedAt?: Date;
 }
 
+// Warehouse schema
 const warehouseSchema = new Schema<IWarehouse>(
   {
     name: {
       type: String,
       required: true,
-      trim: true
+      trim: true,
     },
+
     location: {
       type: String,
       required: true,
-      trim: true
+      trim: true,
     },
+
     capacity: {
       type: Number,
       required: true,
-      min: 0
-    }
+      min: 0,
+    },
   },
   {
-    timestamps: true
+    timestamps: true,
   }
 );
 
-const Warehouse = mongoose.model<IWarehouse>(
-  "Warehouse",
-  warehouseSchema
-);
+// Create or reuse Warehouse model
+const Warehouse =
+  mongoose.models.Warehouse ||
+  mongoose.model<IWarehouse>("Warehouse", warehouseSchema);
 
+// Default export
 export default Warehouse;
