@@ -1,4 +1,4 @@
-
+import connectDB from "./config/db";
 import "dotenv/config";
 import express from "express";
 import cors from "cors";
@@ -18,6 +18,13 @@ app.get("/api/health", (req, res) => {
 
 const PORT = process.env.PORT || 5000;
 
-app.listen(PORT, () => {
-  console.log(`StockWise server running on port ${PORT}`);
-});
+
+const startServer = async () => {
+  await connectDB();
+
+  app.listen(PORT, () => {
+    console.log(`StockWise server running on port ${PORT}`);
+  });
+};
+
+startServer();
