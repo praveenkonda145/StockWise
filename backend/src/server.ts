@@ -8,6 +8,7 @@ import productRoutes from "./routes/product.routes";
 import inventoryRoutes from "./routes/inventory.routes";
 import authRoutes from "./routes/auth.routes";
 import warehouseRoutes from "./routes/warehouse.routes";
+import dashboardRoutes from "./routes/dashboard.routes";
 
 const app = express();
 
@@ -19,8 +20,9 @@ app.use("/api/products", productRoutes);
 app.use("/api/inventory", inventoryRoutes);
 app.use("/api/auth", authRoutes);
 app.use("/api/warehouses", warehouseRoutes);
+app.use("/api/dashboard", dashboardRoutes);
 
-// Health check route
+// Health check
 app.get("/api/health", (req, res) => {
   res.status(200).json({
     success: true,
