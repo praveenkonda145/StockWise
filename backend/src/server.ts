@@ -5,6 +5,7 @@ import express from "express";
 import cors from "cors";
 import productRoutes from "./routes/product.routes";
 import inventoryRoutes from "./routes/inventory.routes";
+import authRoutes from "./routes/auth.routes";
 
 const app = express();
 
@@ -13,6 +14,7 @@ app.use(express.json());
 
 app.use("/api/products", productRoutes);
 app.use("/api/inventory", inventoryRoutes);
+app.use("/api/auth", authRoutes);
 
 // Test route
 app.get("/api/health", (req, res) => {
